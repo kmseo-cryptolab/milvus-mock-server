@@ -1,0 +1,6 @@
+fastapi
+pydantic
+pydantic_core
+fastapi-security
+SQLAlchemy
+numpy
