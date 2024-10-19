@@ -37,7 +37,7 @@ Ensure you have the following installed:
 3. Install the dependencies:
 
    ```bash
-   pip install -r requirements.txt
+   pip install -r requirements.txt --no-deps # needs no deps option
    ```
 
 ## Usage
