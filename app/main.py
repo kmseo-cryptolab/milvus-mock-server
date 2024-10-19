@@ -16,10 +16,16 @@ from app.middleware.auth import auth_middleware
 # Create root user
 def create_root_user():
     db = SessionLocal()
+
     try:
         root_user = db.query(User).filter(User.user_name == "root").first()
         if not root_user:
-            root_user = User(user_name="root", password="Orenco", is_root=True)
+            user_name = "root"
+            password = (
+                "xeb8npMpXAA2WqfVInUeTfEIJUTXy5xyZJ2dyKyaUM4="  # hashed, iter=100000
+            )
+            root_user = User(user_name=user_name, password=password, is_root=True)
+
             db.add(root_user)
             db.commit()
     finally:
@@ -31,7 +37,8 @@ async def lifespan(_app: FastAPI):
     # Startup logic
     create_root_user()
 
-    yield  # Shutdown logic can be added here if needed
+    yield
+    # Shutdown logic can be added here if needed
 
 
 app = FastAPI(lifespan=lifespan)
