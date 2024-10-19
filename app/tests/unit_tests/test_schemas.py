@@ -31,4 +31,3 @@ def test_user_serialization():
 
 if __name__ == "__main__":
     pytest.main()
-

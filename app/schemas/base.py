@@ -28,7 +28,5 @@ def camel_case_alias_generator(s: str) -> str:
 
 
 class BaseSchema(BaseModel):
-    
-    model_config = ConfigDict(
-        alias_generator=camel_case_alias_generator
-    )
+
+    model_config = ConfigDict(alias_generator=camel_case_alias_generator)
