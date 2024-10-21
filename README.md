@@ -1,8 +1,8 @@
-# Orenco-mvp-server
+# Milvus-mvp-server
 
-> server - Orenco Workflow: MVP Phase
+> server - Milvus Workflow: MVP Phase
 
-Orenco is a Database with RESTful API built with Python 3.10 and FastAPI.
+Milvus is a Database with RESTful API built with Python 3.10 and FastAPI.
 
 ## Table of Contents
 
@@ -23,21 +23,21 @@ Ensure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/kmseo-cryptolab/orenco-mvp-server.git
-   cd orenco-mvp-server
+   git clone https://github.com/kmseo-cryptolab/milvus-mvp-server.git
+   cd milvus-mvp-server
    ```
 
 2. Create a conda environment:
 
    ```bash
-   conda create -n orenco python=3.10
-   conda activate orenco
+   conda create -n milvus python=3.10
+   conda activate milvus
    ```
 
 3. Install the dependencies:
 
    ```bash
-   pip install -r requirements.txt
+   pip install -r requirements.txt --no-deps # needs no deps option
    ```
 
 ## Usage

@@ -21,9 +21,7 @@ def create_root_user():
         root_user = db.query(User).filter(User.user_name == "root").first()
         if not root_user:
             user_name = "root"
-            password = (
-                "xeb8npMpXAA2WqfVInUeTfEIJUTXy5xyZJ2dyKyaUM4="  # hashed, iter=100000
-            )
+            password = "EVRs6qDsJRoo9rcKOvOBICNSfwa61ycyk8Rr+YWMgGA="  # hashed, iter=100000
             root_user = User(user_name=user_name, password=password, is_root=True)
 
             db.add(root_user)
@@ -61,7 +59,5 @@ Base.metadata.create_all(bind=engine)
 
 # Include routers
 app.include_router(user.router, prefix="/v2/vectordb/users", tags=["User (v2)"])
-app.include_router(
-    collection.router, prefix="/v2/vectordb/collections", tags=["Collection (v2)"]
-)
+app.include_router(collection.router, prefix="/v2/vectordb/collections", tags=["Collection (v2)"])
 app.include_router(entity.router, prefix="/v2/vectordb/entities", tags=["Entity (v2)"])
