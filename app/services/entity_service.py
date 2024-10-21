@@ -46,6 +46,11 @@ class EntityService:
         entities = db.query(Entity).filter(Entity.collection_id == collection.id).all()
         query_vector = np.array(search.data[0])
 
+        # query_vector가 768차원이 아니면 zero padding
+        if query_vector.shape[0] < collection.dimension:
+            padding_length = collection.dimension - query_vector.shape[0]
+            query_vector = np.pad(query_vector, (0, padding_length), mode="constant")
+
         anns_field = search.anns_field
         output_fields = search.output_fields
 
@@ -65,7 +70,12 @@ class EntityService:
         for entity in entities:
             vector = entity.data.get(anns_field)
             entity_vector = np.array(vector)
-            distance = np.linalg.norm(query_vector - entity_vector)
+
+            # cosine similarity 계산
+            dot_product = np.dot(query_vector, entity_vector)
+            norm_query = np.linalg.norm(query_vector)
+            norm_entity = np.linalg.norm(entity_vector)
+            cosine_similarity = dot_product / (norm_query * norm_entity)
 
             # output_fields에서 필드가 존재하는 경우에만 추가
             result_data = {
@@ -74,7 +84,7 @@ class EntityService:
             results.append(
                 {
                     "id": entity.id,
-                    "distance": float(distance),
+                    "distance": 1 - cosine_similarity,  # cosine similarity를 distance로 변환
                     **result_data,
                 }
             )

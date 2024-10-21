@@ -184,6 +184,31 @@ def test_search_vectors(client, headers):
     assert len(result.json()["data"]) > 0
 
 
+def test_search_insufficient_vectors(client, headers):
+    """
+    벡터 검색 테스트
+    """
+
+    # GIVEN 컬렉션 이름과 검색할 벡터 데이터, 벡터는 살짝 적게
+    url = "/v2/vectordb/entities/search"
+    headers["Authorization"] = f"Bearer {USER_TOKEN}"
+    data = {
+        "collectionName": "test_collection",
+        "data": [[0.1, 0.2, 0.3]],
+        "limit": 2,
+        "annsField": "vector",
+        "outputFields": ["color"],
+    }
+
+    # WHEN 벡터 검색 API를 호출하면
+    result = client.post(url, json=data, headers=headers)
+
+    # THEN 응답 상태 코드가 200이고, 응답 데이터가 비어있지 않아야 한다.
+    assert result.status_code == 200
+    assert result.json()["code"] == 0
+    assert len(result.json()["data"]) > 0
+
+
 def test_drop_collection(client, headers):
     """
     컬렉션 삭제 테스트
