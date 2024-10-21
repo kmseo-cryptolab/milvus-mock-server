@@ -2,7 +2,7 @@
 app.schemas.entity.py
 """
 
-from typing import List
+from typing import List, Dict, Any
 
 from .base import BaseSchema
 
@@ -23,14 +23,19 @@ class EntitySearch(BaseSchema):
 class EntitySearchResult(BaseSchema):
     id: int
     distance: float
-    metadata: dict
+    color: str
 
 
 class EntitySearchResponse(BaseSchema):
     code: int
-    data: List[EntitySearchResult]
+    data: List[Dict[str, Any]]
+    """
+    id: int
+    distance: float
+    **kwargs
+    """
 
 
 class EntityInsertResponse(BaseSchema):
     code: int
-    data: dict
+    data: Dict[str, Any]

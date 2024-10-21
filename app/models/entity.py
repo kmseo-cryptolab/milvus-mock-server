@@ -12,8 +12,7 @@ class Entity(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     collection_id = Column(Integer, ForeignKey("collections.id"))
-    vector = Column(JSON)  # Store vector as JSON
-    metadata_ = Column("metadata", JSON)  # metadata = Column(JSON)
+    data = Column(JSON)  # data = Column(JSON)
 
     # Relationship with Collection, using lazy loading
     collection = relationship("Collection", back_populates="entities", lazy="select")

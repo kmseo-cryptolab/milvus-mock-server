@@ -141,12 +141,12 @@ def test_insert_vectors(client, headers):
             {
                 "id": 1,
                 "vector": [0.1, 0.2, 0.3, 0.4, 0.5],
-                "metadata": {"color": "red"},
+                "color": "red",
             },
             {
                 "id": 2,
                 "vector": [0.2, 0.3, 0.4, 0.5, 0.6],
-                "metadata": {"color": "blue"},
+                "color": "blue",
             },
         ],
     }
@@ -248,9 +248,7 @@ def test_drop_not_existent_user(client, headers):
     non_existent_user = "non-existent-user"
 
     # WHEN 사용자 삭제 API 호출하면
-    drop_result = client.post(
-        url, json={"userName": non_existent_user}, headers=headers
-    )
+    drop_result = client.post(url, json={"userName": non_existent_user}, headers=headers)
 
     # THEN 응답 상태 코드가 404여야 한다.
     assert drop_result.status_code == 404
