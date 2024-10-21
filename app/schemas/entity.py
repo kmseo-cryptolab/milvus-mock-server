@@ -13,11 +13,11 @@ class EntityCreate(BaseSchema):
 
 
 class EntitySearch(BaseSchema):
-    collection_name: str
+    collection_name: str = "wikipedia"
     data: List[List[float]]
-    limit: int
-    anns_field: str
-    output_fields: List[str]
+    limit: int = 1
+    anns_field: str = "emb"
+    output_fields: List[str] = ["title", "text"]
 
 
 class EntitySearchResult(BaseSchema):
