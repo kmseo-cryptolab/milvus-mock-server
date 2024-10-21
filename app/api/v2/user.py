@@ -20,6 +20,10 @@ router = APIRouter()
 async def list_users(
     db: Session = Depends(get_db), current_user: User = Depends(get_current_user)
 ) -> UserList:
+    """[Root Only] User List를 조회합니다.
+
+    See API Spec at [Milvus API(V2)::List Users](https://milvus.io/api-reference/restful/v2.4.x/v2/User%20(v2)/Lists.md)
+    """
 
     users: List[User]
 
@@ -38,6 +42,10 @@ async def create_user(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
+    """[Root Only] User를 생성합니다.
+
+    See API Spec at [Milvus API(V2)::Create User](https://milvus.io/api-reference/restful/v2.4.x/v2/User%20(v2)/Create.md)
+    """
     try:
         await UserService.create_user(db, user, current_user)
 
@@ -53,6 +61,11 @@ async def drop_user(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
+    """[Root Only] User를 삭제합니다.
+
+    See API Spec at [Milvus API(V2)::Drop User](https://milvus.io/api-reference/restful/v2.4.x/v2/User%20(v2)/Drop.md)
+    """
+
     try:
         await UserService.drop_user(db, user_name, current_user)
 

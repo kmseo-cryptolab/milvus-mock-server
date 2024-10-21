@@ -30,6 +30,11 @@ def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(securit
 
 
 async def auth_middleware(request: Request, call_next):
+    """
+    사용자 인증을 위한 미들웨어입니다.
+
+    NOTE: Bearer는 JWT 발급받는 방식이 더 안전하지만, Milvus 구현체는 평문의 id:pw 구조를 사용합니다.
+    """
     if request.url.path == "/favicon.ico":
         return Response(status_code=204)
 

@@ -24,6 +24,10 @@ async def search_vectors(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
+    """Vector를 유사도 기반으로 조회합니다.
+
+    See API Spec at [Milvus API(V2)::Vector Search](https://milvus.io/api-reference/restful/v2.4.x/v2/Vector%20(v2)/Search.md)
+    """
     results = await EntityService.search_entities(db, search, current_user)
     return EntitySearchResponse(code=0, data=results)
 
@@ -34,6 +38,10 @@ async def insert_vectors(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
+    """Vector를 입력합니다.
+
+    See API Spec at [Milvus API(V2)::Vector Insert](https://milvus.io/api-reference/restful/v2.4.x/v2/Vector%20(v2)/Insert.md)
+    """
     inserted_ids = await EntityService.insert_entities(db, entity_create, current_user)
     if inserted_ids:
         return EntityInsertResponse(
