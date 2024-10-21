@@ -12,8 +12,8 @@ from fastapi.testclient import TestClient
 from app.main import app
 
 USERNAME = f"tenant-test-{random.randint(1, 1000)}"
-PASSWORD = "Orenco"
-ROOT_TOKEN = "root:Orenco"
+PASSWORD = "password"
+ROOT_TOKEN = "root:password"
 USER_TOKEN = f"{USERNAME}:{PASSWORD}"
 
 
