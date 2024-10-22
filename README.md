@@ -1,6 +1,6 @@
-# Milvus-mvp-server
+# Milvus-mock-server
 
-> server - Milvus Workflow: MVP Phase
+> Mock server for Milvus Workflow
 
 Milvus is a Database with RESTful API built with Python 3.10 and FastAPI.
 
@@ -23,8 +23,8 @@ Ensure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/kmseo-cryptolab/milvus-mvp-server.git
-   cd milvus-mvp-server
+   git clone https://github.com/kmseo-cryptolab/milvus-mock-server.git
+   cd milvus-mock-server
    ```
 
 2. Create a conda environment:
@@ -48,7 +48,7 @@ Run the server with:
 ./run_server.sh
 ```
 
-The API will be accessible at `http://0.0.0.0:8000`.
+The API will be accessible at `http://0.0.0.0:10103`.
 
 ## Testing
 
